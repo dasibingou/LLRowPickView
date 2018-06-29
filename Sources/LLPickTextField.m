@@ -8,6 +8,8 @@
 
 #import "LLPickTextField.h"
 
+#define ll_HEXCOLOR(hex) [UIColor colorWithRed:((float)((hex & 0xFF0000) >> 16)) / 255.0 green:((float)((hex & 0xFF00) >> 8)) / 255.0 blue:((float)(hex & 0xFF)) / 255.0 alpha:1]
+
 @interface LLPickTextField () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic) UIPickerView *pvMain;
@@ -61,7 +63,7 @@
 {
     if (!_pvMain) {
         _pvMain = [[UIPickerView alloc] init];
-        _pvMain.backgroundColor = HEXCOLOR(0xf5f5f5);
+        _pvMain.backgroundColor = ll_HEXCOLOR(0xf5f5f5);
         _pvMain.delegate = self;
         _pvMain.dataSource = self;
     }
@@ -95,14 +97,14 @@
         
         UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 44)];
         cancel.titleLabel.font = [UIFont systemFontOfSize:16];
-        [cancel setTitleColor:BASE_COLOR_RED forState:UIControlStateNormal];
+        [cancel setTitleColor:ll_HEXCOLOR(0xFF295B) forState:UIControlStateNormal];
         [cancel setTitle:@"取消" forState:UIControlStateNormal];
         [cancel addTarget:self action:@selector(doAccessoryCancel) forControlEvents:UIControlEventTouchUpInside];
         [_viewAccessory addSubview:cancel];
         
         UIButton *ok = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 44)];
         ok.titleLabel.font = [UIFont systemFontOfSize:16];
-        [ok setTitleColor:BASE_COLOR_RED forState:UIControlStateNormal];
+        [ok setTitleColor:ll_HEXCOLOR(0xFF295B) forState:UIControlStateNormal];
         [ok setTitle:@"确定" forState:UIControlStateNormal];
         [ok addTarget:self action:@selector(doAccessoryOk) forControlEvents:UIControlEventTouchUpInside];
         [_viewAccessory addSubview:ok];
